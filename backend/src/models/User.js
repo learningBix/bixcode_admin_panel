@@ -54,4 +54,41 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
+// Cascade delete: when a User with role 'student' is deleted, remove the linked Student
+userSchema.pre('findOneAndDelete', async function(next) {
+  try {
+    const filter = this.getFilter();
+    const doc = await this.model.findOne(filter).lean();
+    if (doc && doc.role === 'student') {
+      const Student = mongoose.model('Student');
+      await Student.deleteMany({
+        $or: [
+          { userId: doc._id },
+          { email: (doc.email || '').toLowerCase() }
+        ]
+      });
+    }
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
+userSchema.pre('deleteOne', { document: true, query: false }, async function(next) {
+  try {
+    if (this.role === 'student') {
+      const Student = mongoose.model('Student');
+      await Student.deleteMany({
+        $or: [
+          { userId: this._id },
+          { email: (this.email || '').toLowerCase() }
+        ]
+      });
+    }
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = mongoose.model('User', userSchema);

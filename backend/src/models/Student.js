@@ -130,4 +130,41 @@ studentSchema.statics.getTotalCount = function(searchTerm) {
   return this.countDocuments(query);
 };
 
+// Cascade delete: when a Student is deleted, remove the linked User as well
+// Handles findByIdAndDelete/findOneAndDelete
+studentSchema.pre('findOneAndDelete', async function(next) {
+  try {
+    const filter = this.getFilter();
+    const doc = await this.model.findOne(filter).lean();
+    if (doc) {
+      const User = mongoose.model('User');
+      if (doc.userId) {
+        await User.findByIdAndDelete(doc.userId);
+      }
+      if (doc.email) {
+        await User.deleteMany({ email: (doc.email || '').toLowerCase(), role: 'student' });
+      }
+    }
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Handles document.deleteOne() and doc.remove()
+studentSchema.pre('deleteOne', { document: true, query: false }, async function(next) {
+  try {
+    const User = mongoose.model('User');
+    if (this.userId) {
+      await User.findByIdAndDelete(this.userId);
+    }
+    if (this.email) {
+      await User.deleteMany({ email: (this.email || '').toLowerCase(), role: 'student' });
+    }
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = mongoose.model('Student', studentSchema);

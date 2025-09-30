@@ -10,6 +10,7 @@ const {
   getStudentStats,
   validateStudentCredentials,
   resetStudentPassword,
+  validateStudentSession,
   saveStudentProject,
   loadStudentProjects,
   loadStudentProject,
@@ -67,6 +68,9 @@ router.post('/validate-credentials', validateStudentCredentials);
 
 // Student password reset (public endpoint for BixCode integration)
 router.post('/reset-password', resetStudentPassword);
+
+// Student session validation (public endpoint for BixCode integration)
+router.post('/validate-session', validateStudentSession);
 
 // Student project cloud storage (public endpoints for BixCode integration)
 router.post('/save-project', saveStudentProject);

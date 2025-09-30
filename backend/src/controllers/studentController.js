@@ -581,6 +581,47 @@ const resetStudentPassword = async (req, res) => {
   }
 };
 
+// Validate student session (check if student still exists)
+const validateStudentSession = async (req, res) => {
+  try {
+    const { studentId, email } = req.body;
+
+    if (!studentId || !email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Student ID and email are required'
+      });
+    }
+
+    // Find student by ID and email
+    const student = await Student.findOne({ 
+      _id: studentId, 
+      email: email.toLowerCase(),
+      isActive: true // Only check active students
+    });
+
+    if (!student) {
+      return res.json({
+        success: true,
+        exists: false,
+        message: 'Student not found or inactive'
+      });
+    }
+
+    res.json({
+      success: true,
+      exists: true,
+      message: 'Student session is valid'
+    });
+  } catch (error) {
+    console.error('Error validating session:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to validate session'
+    });
+  }
+};
+
 // Save student project to cloud
 const saveStudentProject = async (req, res) => {
   try {
@@ -780,6 +821,7 @@ module.exports = {
   getStudentStats,
   validateStudentCredentials,
   resetStudentPassword,
+  validateStudentSession,
   saveStudentProject,
   loadStudentProjects,
   loadStudentProject,

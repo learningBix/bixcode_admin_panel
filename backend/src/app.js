@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 const connectDB = require('./config/database');
+const { startOrphanUserCleanup } = require('./utils/cleanup');
+const { startCascadeWatchers } = require('./utils/cascade-watchers');
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -15,6 +17,9 @@ const app = express();
 
 // Connect to database
 connectDB();
+// Start background cleanup to handle manual DB deletions
+const stopCleanup = startOrphanUserCleanup({ runImmediately: true, intervalMs: 5 * 1000 });
+const stopWatchers = startCascadeWatchers();
 
 // Security middleware - Configure Helmet for development
 app.use(helmet({
@@ -44,23 +49,31 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 
 app.use(cors({
   origin: function (origin, callback) {
-    console.log('CORS request from origin:', origin);
-    console.log('Allowed origins:', allowedOrigins);
+    if (process.env.DEBUG_CORS === 'true') {
+      console.log('CORS request from origin:', origin);
+      console.log('Allowed origins:', allowedOrigins);
+    }
     
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
     // In development, allow any localhost or 127.0.0.1 origin
     if (isDevelopment && (origin.includes('localhost') || origin.includes('127.0.0.1'))) {
-      console.log('CORS: Development origin allowed');
+      if (process.env.DEBUG_CORS === 'true') {
+        console.log('CORS: Development origin allowed');
+      }
       return callback(null, true);
     }
     
     if (allowedOrigins.indexOf(origin) !== -1) {
-      console.log('CORS: Origin allowed');
+      if (process.env.DEBUG_CORS === 'true') {
+        console.log('CORS: Origin allowed');
+      }
       callback(null, true);
     } else {
-      console.log('CORS: Origin blocked');
+      if (process.env.DEBUG_CORS === 'true') {
+        console.log('CORS: Origin blocked');
+      }
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -72,7 +85,9 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Logging
-app.use(morgan('combined'));
+if (process.env.DEBUG_HTTP === 'true') {
+  app.use(morgan('combined'));
+}
 
 // Routes
 app.use('/api/auth', authRoutes);

@@ -2,6 +2,8 @@ const express = require('express');
 const { auth, requireAdmin } = require('../middleware/auth');
 
 const router = express.Router();
+const mongoose = require('mongoose');
+const { removeOrphanedStudentUsers } = require('../utils/cleanup');
 
 // All routes in this file require authentication and admin role
 // The frontend only decides what to show; this server-side check is the real gatekeeper
@@ -32,6 +34,16 @@ router.get('/dashboard', async (req, res) => {
 // Health for admin area
 router.get('/health', (req, res) => {
   res.json({ status: 'OK', area: 'admin' });
+});
+
+// On-demand orphan cleanup (admin only) to reflect manual DB deletions immediately
+router.post('/cleanup-orphans', async (req, res) => {
+  try {
+    const result = await removeOrphanedStudentUsers();
+    res.json({ success: true, result });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Cleanup failed' });
+  }
 });
 
 module.exports = router;
