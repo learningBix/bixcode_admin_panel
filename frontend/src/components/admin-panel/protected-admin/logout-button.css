@@ -1,0 +1,103 @@
+/* Logout Button Styles */
+.logout-button {
+  position: relative;
+  background: rgba(220, 53, 69, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-width: 90px;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.logout-button:hover {
+  background: rgba(220, 53, 69, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button:active {
+  transform: translateY(0);
+  background: rgba(220, 53, 69, 0.3);
+}
+
+.logout-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.5);
+}
+
+.logout-icon {
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logout-text {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover .logout-icon {
+  transform: scale(1.1);
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+  .logout-button {
+    padding: 6px 12px;
+    font-size: 13px;
+    min-width: 80px;
+    gap: 4px;
+  }
+  
+  .logout-icon {
+    font-size: 12px;
+  }
+  
+  .logout-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logout-button {
+    padding: 6px 8px;
+    font-size: 12px;
+    min-width: 60px;
+    gap: 4px;
+  }
+  
+  .logout-text {
+    display: none;
+  }
+  
+  .logout-icon {
+    font-size: 14px;
+  }
+}
+
+/* Animation for button appearance */
+.logout-button {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

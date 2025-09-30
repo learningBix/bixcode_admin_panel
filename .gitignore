@@ -1,0 +1,67 @@
+# Node dependencies
+node_modules/
+
+# Environment and secrets
+.env
+.env.*
+!**/.env.example
+
+# Logs and diagnostics
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+server.log
+error.log
+
+# Build output
+build/
+dist/
+frontend/build/
+backend/dist/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Caches and temp
+.eslintcache
+.cache/
+.next/
+.temp/
+.tmp/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor settings (optional)
+.vscode/
+.idea/
+.history/
+*.sublime-*
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+data/
+
+# Deployment platforms
+.vercel/
+.netlify/
+.railway/
+.render/
+
+# Misc
+*.pid
+*.pid.lock
+*.seed
+*.tgz
+*.swp
+
+# React/Parcel cache
+.parcel-cache/

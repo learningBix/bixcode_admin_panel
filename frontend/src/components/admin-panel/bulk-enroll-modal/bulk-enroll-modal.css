@@ -1,0 +1,208 @@
+/* Bulk Enroll Modal Styles */
+.bulk-enroll-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.bulk-enroll-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.bulk-enroll-modal-header {
+  padding: 24px 24px 16px 24px;
+  border-bottom: 1px solid #e9ecef;
+  text-align: center;
+}
+
+.bulk-enroll-modal-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.bulk-enroll-modal-content {
+  padding: 24px;
+}
+
+.file-upload-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.choose-files-button {
+  background: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #495057;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.choose-files-button:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.choose-files-button:active {
+  transform: translateY(1px);
+}
+
+.file-name-text {
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-weight: 400;
+  flex: 1;
+}
+
+.download-format-section {
+  text-align: center;
+}
+
+.download-format-button {
+  background: none;
+  border: none;
+  color: #2c3e50;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  padding: 8px 0;
+}
+
+.download-format-button:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.bulk-enroll-modal-footer {
+  padding: 16px 24px 24px 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  border-top: 1px solid #e9ecef;
+}
+
+.cancel-button {
+  background: #f8f9fa;
+  border: 1px solid #ced4da;
+  color: #495057;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.cancel-button:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.upload-button {
+  background: #007bff;
+  border: 1px solid #007bff;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.upload-button:hover:not(:disabled) {
+  background: #0056b3;
+  border-color: #0056b3;
+}
+
+.upload-button:disabled {
+  background: #6c757d;
+  border-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .bulk-enroll-modal {
+    width: 95%;
+    max-width: none;
+    margin: 0 10px;
+  }
+  
+  .bulk-enroll-modal-header,
+  .bulk-enroll-modal-content,
+  .bulk-enroll-modal-footer {
+    padding: 16px;
+  }
+  
+  .file-upload-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .choose-files-button {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .file-name-text {
+    text-align: center;
+  }
+  
+  .bulk-enroll-modal-footer {
+    flex-direction: column;
+  }
+  
+  .cancel-button,
+  .upload-button {
+    width: 100%;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .bulk-enroll-modal {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+}

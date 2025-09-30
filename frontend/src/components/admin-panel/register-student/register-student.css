@@ -1,0 +1,488 @@
+/* Register Student Styles */
+.register-student {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.register-student h2 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.student-table-container {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  -webkit-overflow-scrolling: touch;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse; /* keep header tight */
+  background-color: white;
+  min-width: 950px;
+}
+
+.student-table thead {
+  background-color: #495057;
+  color: white;
+}
+
+.student-table th {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.student-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin: 6px 0; /* adds a little gap between inputs */
+}
+
+/* Horizontal gap between inputs (body only, not header) */
+.student-table tbody td .form-input {
+  display: block;
+}
+.student-table tbody td:not(:last-child) .form-input {
+  margin-right: 12px;
+  width: calc(100% - 12px);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.form-input::placeholder {
+  color: #6c757d;
+}
+
+.delete-button {
+  background: none;
+  border: 1px solid #ced4da;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #495057;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  opacity: 1;
+}
+
+.delete-button:hover:not(:disabled) {
+  background-color: #fff5f5;
+  border-color: #f5c6cb;
+  color: #c82333;
+}
+
+.delete-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.delete-button .minus {
+  display: block;
+  line-height: 1;
+  font-weight: 700;
+  font-size: 18px;
+  transform: translateY(-1px);
+}
+
+.register-student .action-buttons {
+  display: flex !important;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-between !important;
+  align-items: flex-start;
+  text-align: left !important;
+  width: 100%;
+}
+
+.left-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.right-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.add-rows-button {
+  background-color: #fd7e14;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-rows-button:hover {
+  background-color: #e8681c;
+  transform: translateY(-1px);
+}
+
+.button-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.bulk-enroll-button {
+  background: none;
+  border: none;
+  color: #495057;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0.75rem 0;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.bulk-enroll-button:hover {
+  color: #007bff;
+}
+
+.clear-button {
+  background: none;
+  border: none;
+  color: #495057;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0.75rem 0;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.clear-button:hover {
+  color: #007bff;
+}
+
+.register-section {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.register-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,123,255,0.4);
+}
+
+.register-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1200px) {
+  .register-student {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .student-table {
+    min-width: 900px;
+    font-size: 0.9rem;
+  }
+  
+  .student-table th,
+  .student-table td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .register-student {
+    padding: 0 0.5rem;
+  }
+  
+  .register-student h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .student-table-container {
+    margin: 0 -0.5rem;
+    overflow-x: auto;
+    border-radius: 6px;
+  }
+  
+  .student-table {
+    min-width: 800px;
+    font-size: 0.8rem;
+  }
+  
+  .student-table th,
+  .student-table td {
+    padding: 0.6rem 0.4rem;
+  }
+  
+  .form-input {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  .left-actions, .right-actions {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .add-rows-button,
+  .bulk-enroll-button,
+  .clear-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .register-button {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 640px) {
+  .register-student h2 {
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+  }
+  
+  .student-table {
+    min-width: 700px;
+    font-size: 0.75rem;
+  }
+  
+  .student-table th,
+  .student-table td {
+    padding: 0.5rem 0.3rem;
+  }
+  
+  .form-input {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .form-input::placeholder {
+    font-size: 0.75rem;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .register-student {
+    padding: 0;
+  }
+  
+  .register-student h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    line-height: 1.4;
+  }
+  
+  .student-table-container {
+    margin: 0 -1rem;
+    border-radius: 0;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .student-table {
+    min-width: 600px;
+    font-size: 0.7rem;
+    border-radius: 0;
+  }
+  
+  .student-table th {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.3px;
+  }
+  
+  .student-table td {
+    padding: 0.4rem 0.2rem;
+  }
+  
+  .form-input {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.75rem;
+    border-radius: 3px;
+  }
+  
+  .form-input::placeholder {
+    font-size: 0.7rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
+  
+  .left-actions, .right-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .add-rows-button,
+  .bulk-enroll-button,
+  .clear-button {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    justify-content: center;
+  }
+  
+  .register-section {
+    padding: 0 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .register-button {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .register-student h2 {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .student-table {
+    min-width: 550px;
+    font-size: 0.65rem;
+  }
+  
+  .student-table th {
+    padding: 0.4rem 0.15rem;
+    font-size: 0.65rem;
+  }
+  
+  .student-table td {
+    padding: 0.3rem 0.15rem;
+  }
+  
+  .form-input {
+    padding: 0.25rem 0.3rem;
+    font-size: 0.7rem;
+  }
+  
+  .form-input::placeholder {
+    font-size: 0.65rem;
+  }
+  
+  .action-buttons {
+    padding: 0 0.5rem;
+  }
+  
+  .add-rows-button,
+  .bulk-enroll-button,
+  .clear-button {
+    max-width: 200px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .register-button {
+    max-width: 200px;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .form-input {
+    min-height: 44px; /* iOS touch target minimum */
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .delete-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .add-rows-button,
+  .bulk-enroll-button,
+  .clear-button,
+  .register-button {
+    min-height: 44px;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .student-table-container {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  .form-input {
+    border-width: 0.5px;
+  }
+}
